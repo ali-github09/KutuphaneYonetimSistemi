@@ -22,19 +22,19 @@ public class Book {
     @Column(name = "book_stok")
     private int stok;
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book",fetch = FetchType.LAZY)
     private List<BookBorrowing> bookBorrowingList;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_publisher_id", referencedColumnName = "publisher_id")
     private Publisher publisher;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_author", referencedColumnName = "author_name")
     private Author author;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "book2category",
             joinColumns = {@JoinColumn(name = "book2category_book_id")},
